@@ -1,10 +1,12 @@
 import React from "react";
 import articleContent from './Articale-content.js'
+import Articles from "../componet/Articles"
 
 const Article = ({match}) => {
     const name = match.params.name;
     const article = articleContent.find((article)=>article.name === name);
     if(!article) return <h1>Page not found</h1>;
+    const otherArticle = articleContent.filter((article=>article.name !== name));
     
     return ( 
         <>
@@ -17,7 +19,12 @@ const Article = ({match}) => {
                      {paragraph} 
                      </p>                          
                  ))}
-            
+            <h1 className="sm:text-2x text-xl font-blod mt-4 mb-4 text-gray-900">
+                <div className="flex flex-wrap -m-4">
+                <Articles articles={otherArticle}></Articles>
+                </div>
+                
+            </h1>
         </>
      );
 }
